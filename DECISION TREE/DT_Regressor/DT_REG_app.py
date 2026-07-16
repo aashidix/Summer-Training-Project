@@ -21,7 +21,8 @@ st.write("Enter the experience years below and click on Predict.")
 ex_years = st.number_input("Experience Years:", min_value=0.0, value=15.0)
 
 if st.button("Predict"):
-    data = pd.DataFrame([[ex_years]], columns=["Experience_Years"])
+    expected = list(getattr(model, "feature_names_in_", ["YearsExperience"]))
+    data = pd.DataFrame([[ex_years]], columns=expected)
     result = model.predict(data)
     salary_value = float(result.flatten()[0])
 
